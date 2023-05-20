@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;800&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+
+<link href="https://fonts.googleapis.com/css?family=PT Serif:80" rel="stylesheet" type='text/css'>
+<link >
+<link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/reset.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+ <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="https://atlo.team/wp-content/uploads/2020/07/mtascript.js"></script>
+
+        <title>Lombkorona</title>
+        <style>
+            body {
+                overflow-x: hidden;
+                margin: 0px;
+                font-family: monospace;
+                color: white;
+            }
+
+            canvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+            }
+
+            main {
+                width: 100vw;
+                height: 200vw;
+                z-index: 99;
+                position: absolute;
+                justify-content: center;
+                text-align: center;
+                pointer-events: none;
+                font-size: 5vh;
+                color:#141414;
+                font-family: Merriweather;
+            }
+
+            section {
+                min-height: 100vh;
+                
+                font-size: 2vh;line-height:3vh;
+            }
+
+            #scrollProgress {
+                position: fixed;
+                bottom: 10px;
+                left: 10px;
+                z-index: 99;
+                font-size: 3vh;
+                color:black;
+            }
+
+           .fullbody{height:auto;width:100vw;background-color:white;z-index:100!important; display: block;
+    align-items: center;flex-direction: column ;pointer-events: all!important;
+    justify-content: center;position:relative}
+
+     .annotationLabel {
+                color: #ffffff;
+                font-family: monospace;
+                pointer-events: none;
+                font-size: 17px;
+            }
+
+            .annotationDescription {
+                color: #ffffff;
+                font-family: monospace;
+                pointer-events: none;
+                font-size: 14px;
+                position: absolute;
+                left: 25px;
+                padding: 1em;
+                width: 200px;
+                background: rgba(0, 0, 0, 0.66);
+                border-radius: 0.5em;
+                transition: opacity 0.5s;
+                display: none;
+            }
+
+.title{font-size:3.5vw;padding-top:8vh}
+.subtitle{font-size:2vw;padding-top:2vh}
+.writers{font-size:1.4vw;padding-top:2vh;pointer-events: all!important;}
+.writers span{color:black;}
+.logo{margin-left:45%;margin-right:45%;width:10%;padding-top:2vh;pointer-events: all!important}
+.logo:hover{opacity:0.7;cursor:pointer}
+#szabo:hover{opacity:1;cursor:pointer;color:red}
+#zsilak:hover{opacity:1;cursor:pointer;color:red}
+.bodytext{padding-left:20%;padding-right:20%;text-align: justify;font-size: 2vh;line-height:3vh;}
+.bodytext p{background-color: rgba(255,255,255,0.8);padding:20px;border-radius: 10px}
+
+
+.arrow2{
+        position: fixed;
+        padding-top:50vh;
+        margin-left: 49vw;
+        z-index:15;
+        pointer-events: none;z-index: 100009;
+        transition: opacity 0.5s ease;
+
+}
+.arrow2 span{
+  pointer-events: none;
+        display: block;
+        width: 2vw;
+        height: 2vw;
+        border-bottom: 5px solid rgba(170,170,170,1);
+        border-right: 5px solid rgba(170,170,170,1);
+        transform: rotate(45deg);
+        margin: -8px;
+        animation: animate 2s infinite;
+}
+.arrow2 span:nth-child(2){
+        animation-delay: -0.2s;
+}
+.arrow2 span:nth-child(3){
+        animation-delay: -0.4s;
+}
+@keyframes animate {
+        0%{
+        opacity: 0;
+        transform: rotate(45deg) translate(-15px,-15px);
+}
+        50%{
+        opacity: 1;
+}
+        100%{
+        opacity: 0;
+        transform: rotate(45deg) translate(15px,15px);
+}
+}
+
+@media only screen and (max-width: 900px)  and (orientation: portrait){.arrow2{
+        position: fixed;
+        bottom: 5vh;
+        padding-bottom: 8vh;
+        padding-left: 46.5vw;
+        z-index:15;
+        pointer-events: none;z-index: 100009;
+
+}
+.arrow2 span{
+  pointer-events: none;
+        display: block;
+        width: 7vw;
+        height:7vw;
+        border-bottom: 3px solid rgba(170,170,170,1);
+        border-right: 3px solid rgba(170,170,170,1);
+        transform: rotate(45deg);
+        margin:0;
+        animation: animate 2s infinite;
+}
+.arrow2 span:nth-child(2){
+        animation-delay: -0.2s;
+}
+.arrow2 span:nth-child(3){
+        animation-delay: -0.4s;
+}
+@keyframes animate {
+        0%{
+        opacity: 0;
+        transform: rotate(45deg) translate(-15px,-15px);
+}
+        50%{
+        opacity: 1;
+}
+        100%{
+        opacity: 0;
+        transform: rotate(45deg) translate(15px,15px);
+}
+}}
+ @media only screen and (max-width: 900px)  and (orientation: landscape){.arrow2{
+        position: fixed;
+        bottom: 5vh;
+        padding-bottom: 8vh;
+        padding-left: 90vw;
+        z-index:15;
+        pointer-events: none;z-index: 100009;
+
+}
+.arrow2 span{
+  pointer-events: none;
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-bottom: 3px solid rgba(170,170,170,1);
+        border-right: 3px solid rgba(170,170,170,1);
+        transform: rotate(45deg);
+        margin: -8px;
+        animation: animate 2s infinite;
+}
+.arrow2 span:nth-child(2){
+        animation-delay: -0.2s;
+}
+.arrow2 span:nth-child(3){
+        animation-delay: -0.4s;
+}
+@keyframes animate {
+        0%{
+        opacity: 0;
+        transform: rotate(45deg) translate(-15px,-15px);
+}
+        50%{
+        opacity: 1;
+}
+        100%{
+        opacity: 0;
+        transform: rotate(45deg) translate(15px,15px);
+}
+}}
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cd-container {
+  /* this class is used to give a max-width to the element it is applied to, and center it horizontally when it reaches that max-width */
+  width: 90vw;
+  max-width: 100vw;
+  margin: 0 auto;
+}
+.cd-container::after {
+  /* clearfix */
+  content: '';
+  display: table;
+  clear: both;
+}
+
+/* -------------------------------- 
+
+Main components 
+
+-------------------------------- */
+
+html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+
+a {
+  color: #acb7c0;
+  text-decoration: none;
+  font-family: "PT Serif";
+}
+
+img {
+  max-width: 100%;
+}
+
+h1, h2 {
+  font-family: "PT Serif";
+  font-weight: bold;
+}
+
+header {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background: #ffffff;
+}
+header h1 {
+  color: #141414;
+  font-size: 18px;
+  font-size: 1.125rem;
+}
+@media only screen and (min-width: 300px) {
+  header {
+    height: 50px;
+    line-height: 50px;
+  }
+  header h1 {
+    font-size: 24px;
+    font-size: 1.5rem;
+  }
+}
+
+#cd-timeline {
+  position: relative;
+ 
+  
+  margin-bottom: 2em;
+}
+#cd-timeline::before {
+  /* this is the vertical line */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 18px;
+  height: 98%;
+  width: 4px;
+  background: #e6e6e6;
+}
+@media only screen and (min-width: 1170px) {
+  #cd-timeline {
+    margin-top: 3em;
+    margin-bottom: 3em;
+  }
+  #cd-timeline::before {
+    left: 50%;
+    margin-left: -2px;
+  }
+}
+
+.cd-timeline-block {
+  position: relative;
+ padding-top:0vh;
+ padding-bottom:4vh;
+}
+.cd-timeline-block::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.cd-timeline-block:first-child {
+  margin-top: 0;
+}
+.cd-timeline-block:last-child {
+  margin-bottom: 0;
+}
+@media only screen and (min-width: 1170px) {
+  .cd-timeline-block {
+   padding-top:0vh;
+  }
+  
+  .cd-timeline-block:first-child {
+    margin-top: 2vh;
+  }
+  .cd-timeline-block:last-child {
+    margin-bottom: 0vh;
+
+  }
+}
+.cd-timeline-img {
+  position: absolute;
+  top: 0;
+  left: -10px;
+  width: 5vw;
+  height: 5vw;
+  border-radius: 0%;
+
+}
+
+.cd-timeline-img img {
+  display: block;
+  width: calc(100vw/8.7);
+  min-width:10vw;
+  height: auto;
+  position: relative;
+  left: 30%;
+  top: 30%;
+  margin-left: calc(-100vw/28.8);
+  margin-top: calc(-100vw/28.8);
+  border-radius: 0%;
+  z-index:50;
+}
+.cd-timeline-img2 img {
+  display: block;
+  width: 6vw;
+  height: auto;
+  position: relative;
+  margin-left: 42vw;
+  margin-top: 4vh;
+  border-radius: 0%;
+}
+.cd-timeline-img.cd-movie {
+  background: rgba(0,0,0,0);
+}
+.cd-timeline-img.cd-picture {
+  background: rgba(0,0,0,0);
+}
+
+.cd-timeline-img.cd-logo {
+  background: rgba(0,0,0,0);
+
+}
+.cd-timeline-img.cd-location {
+  background: white;
+}
+@media only screen and (min-width: 1170px) {
+  .cd-timeline-img {
+    width: calc(100vw/8.7);
+    height: calc(100vw/8.7);
+    left: 39.3vw;
+    /* Force Hardware Acceleration in WebKit */
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+  }
+  .cssanimations .cd-timeline-img.is-hidden {
+    visibility: hidden;
+  }
+  .cssanimations .cd-timeline-img.bounce-in {
+    visibility: visible;
+    -webkit-animation: cd-bounce-1 0.6s;
+    -moz-animation: cd-bounce-1 0.6s;
+    animation: cd-bounce-1 0.6s;
+  }
+}
+
+@-webkit-keyframes cd-bounce-1 {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+  }
+  
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+@-moz-keyframes cd-bounce-1 {
+  0% {
+    opacity: 0;
+    -moz-transform: scale(0.5);
+  }
+  
+  100% {
+    -moz-transform: scale(1);
+  }
+}
+@keyframes cd-bounce-1 {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+    -moz-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    -o-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  
+  100% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+.cd-timeline-content {
+  position: relative;
+  margin-left: 60px;
+  background: #ffffff;
+  border-radius: 0.2em;
+  padding: 1em;
+ 
+}
+.cd-timeline-content::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.cd-timeline-content h2 {
+  color: #141414;
+}
+.cd-timeline-content p, .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
+  font-size: 13px;
+  font-size: 0.8125rem;
+  color:black;
+}
+.cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
+  display: inline-block;
+}
+.cd-timeline-content p {
+  margin: 1em 0;
+  line-height: 1.6;
+}
+.cd-timeline-content .cd-read-more {
+  
+}
+.no-touch .cd-timeline-content .cd-read-more:hover {
+  
+}
+.cd-timeline-content .cd-date {
+  float: left;
+  padding-top: 0vw;
+  padding-bottom:4vw;
+  padding-left:4vw;
+  opacity: .7;
+}
+.cd-timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  right: 100%;
+  height: 0;
+  width: 0;
+}
+
+
+@media only screen and (min-width: 300px) {
+  
+  .cd-timeline-content p {
+   
+    text-align:left;
+  }
+ .cd-timeline-content .cd-date {
+  float: left;
+  padding-top: 0vw;
+  padding-bottom:4vw;
+  padding-left:0vw;
+  opacity: .7;
+}
+
+.cd-timeline-img {
+ 
+  margin-top:8vw;
+}
+}
+@media only screen and (min-width: 768px) {
+    .cd-timeline-img {
+ 
+  margin-top:8vw;
+}
+  .cd-timeline-content h2 {
+    font-size: 20px;
+    font-size: 1.25rem;
+    text-align:center;
+  }
+  .cd-timeline-content p {
+    font-size: 16px;
+    font-size: 1rem;
+    margin-left:5%;
+    margin-right:5%;
+    
+  }
+  .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
+    font-size: 14px;
+    font-size: 0.875rem;
+  }
+  .cd-timeline-content .cd-date {
+  float: left;
+  padding-top: 0vw;
+  padding-bottom:4vw;
+  padding-left:4vw;
+  opacity: .7;
+}
+}
+
+@media only screen and (min-width: 1170px) {
+    .cd-timeline-img {
+ 
+  margin-top:0vw;
+}
+.cd-timeline-content .cd-date {
+  float: left;
+  padding-top: 5vw;
+  padding-bottom:4vw;
+  padding-left:4vw;
+  opacity: .7;
+}
+  .cd-timeline-content {
+    margin-left: 0;
+    padding: 1.6em;
+    width: 40%;
+  }
+  .cd-timeline-content::before {
+    top: 24px;
+    left: 100%;
+    border-color: transparent;
+    border-left-color: #ffffff;
+  }
+  .cd-timeline-content .cd-read-more {
+    float: left;
+  }
+  .cd-timeline-content .cd-date {
+    position: absolute;
+    width: 100%;
+    left: 145%;
+    top: 6px;
+    font-size: 16px;
+    font-size: 1rem;
+    text-align: left;
+  }
+  .cd-timeline-block:nth-child(even) .cd-timeline-content {
+    float: right;
+
+  }
+
+   .cd-timeline-block:nth-child(odd) .cd-timeline-content p{
+    text-align: right;
+    
+  }
+  .cd-timeline-block:nth-child(even) .cd-timeline-content::before {
+    top: 24px;
+    left: auto;
+    right: 100%;
+    border-color: transparent;
+    border-right-color: #ffffff;
+  }
+  .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-read-more {
+    float: right;
+  }
+  .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-date {
+    left: auto;
+    right: 145%;
+    text-align: right;
+  }
+
+   .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-date {
+    left: auto;
+    right: 145%;
+    text-align: right;
+  }
+  .cssanimations .cd-timeline-content.is-hidden {
+    visibility: hidden;
+  }
+  .cssanimations .cd-timeline-content.bounce-in {
+    visibility: visible;
+    -webkit-animation: cd-bounce-2 0.6s;
+    -moz-animation: cd-bounce-2 0.6s;
+    animation: cd-bounce-2 0.6s;
+  }
+}
+
+@media only screen and (min-width: 1170px) {
+  /* inverse bounce effect on even content blocks */
+  .cssanimations .cd-timeline-block:nth-child(even) .cd-timeline-content.bounce-in {
+    -webkit-animation: cd-bounce-2-inverse 0.6s;
+    -moz-animation: cd-bounce-2-inverse 0.6s;
+    animation: cd-bounce-2-inverse 0.6s;
+  }
+}
+@-webkit-keyframes cd-bounce-2 {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-100px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+  }
+}
+@-moz-keyframes cd-bounce-2 {
+  0% {
+    opacity: 0;
+    -moz-transform: translateX(-100px);
+  }
+ 
+  100% {
+    -moz-transform: translateX(0);
+  }
+}
+@keyframes cd-bounce-2 {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-100px);
+    -moz-transform: translateX(-100px);
+    -ms-transform: translateX(-100px);
+    -o-transform: translateX(-100px);
+    transform: translateX(-100px);
+  }
+  
+  100% {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes cd-bounce-2-inverse {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(100px);
+  }
+  
+  
+  100% {
+    -webkit-transform: translateX(0);
+  }
+}
+@-moz-keyframes cd-bounce-2-inverse {
+  0% {
+    opacity: 0;
+    -moz-transform: translateX(100px);
+  }
+  
+  
+  100% {
+    -moz-transform: translateX(0);
+  }
+}
+@keyframes cd-bounce-2-inverse {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(100px);
+    -moz-transform: translateX(100px);
+    -ms-transform: translateX(100px);
+    -o-transform: translateX(100px);
+    transform: translateX(100px);
+  }
+  
+  100% {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+
+.sidebyside{height:auto;text-align: center;}
+
+.child {
+  display: inline-block;
+
+  vertical-align: middle;
+}
+
+#render{width:auto;height:100vh;margin-right:5vw}
+
+#iframe{width:40vw;height:80vh;margin-top:10vh}
+        </style>
+    </head>
+
+    <body>
+
+
+        <span id="scrollProgress"></span>
+        <main>
+            <div class="title">Mennyibe is került a lombkoronasétány valójában?</div>
+            <section>
+                <div class="subtitle">Az Átlátszó virtuális túrája Nyírmártonfalva legismertebb látványosságáról</div><div class="writers"><span id="szabo">Szabó Krisztián</span>, <span id="zsilak">Zsilák Szilvia</span></div><img class="logo" id="atlatszo"src="https://atlo.team/wp-content/uploads/2023/05/atlatszo-logo-2.png"><div class="arrow2" id="arrow">
+<span></span></div>
+            </section>
+            <section class="bodytext">
+               
+                <p>Suspendisse interdum consectetur libero id faucibus nisl. Donec ac odio tempor orci dapibus ultrices in iaculis. Aenean euismod elementum nisi quis. Lorem sed risus ultricies tristique nulla. Consequat nisl vel pretium lectus quam. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Massa sed elementum tempus egestas sed sed risus pretium. Fusce id velit ut tortor pretium. Ac orci phasellus egestas tellus. Vitae nunc sed velit dignissim sodales. Imperdiet dui accumsan sit amet.
+<br><br>
+Suspendisse interdum consectetur libero id faucibus nisl. Donec ac odio tempor orci dapibus ultrices in iaculis. Aenean euismod elementum nisi quis. Lorem sed risus ultricies tristique nulla. Consequat nisl vel pretium lectus quam. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Massa sed elementum tempus egestas sed sed risus pretium. Fusce id velit ut tortor pretium. Ac orci phasellus egestas tellus. Vitae nunc sed velit dignissim sodales. Imperdiet dui accumsan sit amet.</p>
+            </section>
+            <section>
+               
+                <p></p>
+            </section>
+             <section class="bodytext">
+               
+                <p>Suspendisse interdum consectetur libero id faucibus nisl. Donec ac odio tempor orci dapibus ultrices in iaculis. Aenean euismod elementum nisi quis. Lorem sed risus ultricies tristique nulla. Consequat nisl vel pretium lectus quam. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Massa sed elementum tempus egestas sed sed risus pretium. Fusce id velit ut tortor pretium. Ac orci phasellus egestas tellus. Vitae nunc sed velit dignissim sodales. Imperdiet dui accumsan sit amet.</p>
+            </section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+             <section class="bodytext">
+                
+                 <p>Suspendisse interdum consectetur libero id faucibus nisl. Donec ac odio tempor orci dapibus ultrices in iaculis. Aenean euismod elementum nisi quis. Lorem sed risus ultricies tristique nulla. Consequat nisl vel pretium lectus quam. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Massa sed elementum tempus egestas sed sed risus pretium. Fusce id velit ut tortor pretium. Ac orci phasellus egestas tellus. Vitae nunc sed velit dignissim sodales. Imperdiet dui accumsan sit amet.</p>
+            </section>
+<section>
+                
+                <p></p>
+            </section>
+             <section class="bodytext"style="margin-bottom:20vh">
+                
+                 <p>Suspendisse interdum consectetur libero id faucibus nisl. Donec ac odio tempor orci dapibus ultrices in iaculis. Aenean euismod elementum nisi quis. Lorem sed risus ultricies tristique nulla. Consequat nisl vel pretium lectus quam. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Massa sed elementum tempus egestas sed sed risus pretium. Fusce id velit ut tortor pretium. Ac orci phasellus egestas tellus. Vitae nunc sed velit dignissim sodales. Imperdiet dui accumsan sit amet.</p>
+            </section>
+             <section class="bodytext" style="margin-bottom:20vh">
+               
+                <p>Suspendisse interdum consectetur libero id faucibus nisl. Donec ac odio tempor orci dapibus ultrices in iaculis. Aenean euismod elementum nisi quis. Lorem sed risus ultricies tristique nulla. Consequat nisl vel pretium lectus quam. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Massa sed elementum tempus egestas sed sed risus pretium. Fusce id velit ut tortor pretium. Ac orci phasellus egestas tellus. Vitae nunc sed velit dignissim sodales. Imperdiet dui accumsan sit amet.</p>
+            </section>
+              <section>
+                
+                <p></p>
+            </section>
+              <section class="bodytext"  style="margin-bottom:20vh">
+                
+                 <p>Suspendisse interdum consectetur libero id faucibus nisl. Donec ac odio tempor orci dapibus ultrices in iaculis. Aenean euismod elementum nisi quis. Lorem sed risus ultricies tristique nulla. Consequat nisl vel pretium lectus quam. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Massa sed elementum tempus egestas sed sed risus pretium. Fusce id velit ut tortor pretium. Ac orci phasellus egestas tellus. Vitae nunc sed velit dignissim sodales. Imperdiet dui accumsan sit amet.</p>
+            </section>
+           
+             <section class="bodytext"  >
+                
+                 <p>Suspendisse interdum consectetur libero id faucibus nisl. Donec ac odio tempor orci dapibus ultrices in iaculis. Aenean euismod elementum nisi quis. Lorem sed risus ultricies tristique nulla. Consequat nisl vel pretium lectus quam. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Massa sed elementum tempus egestas sed sed risus pretium. Fusce id velit ut tortor pretium. Ac orci phasellus egestas tellus. Vitae nunc sed velit dignissim sodales. Imperdiet dui accumsan sit amet.</p>
+            </section>
+ <section>
+               
+                <p>
+                    
+                </p>
+            </section>
+             <section class="bodytext">
+               
+                 <p>Suspendisse interdum consectetur libero id faucibus nisl. Donec ac odio tempor orci dapibus ultrices in iaculis. Aenean euismod elementum nisi quis. Lorem sed risus ultricies tristique nulla. Consequat nisl vel pretium lectus quam. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Massa sed elementum tempus egestas sed sed risus pretium. Fusce id velit ut tortor pretium. Ac orci phasellus egestas tellus. Vitae nunc sed velit dignissim sodales. Imperdiet dui accumsan sit amet.</p>
+            </section>
+             <section>
+               
+                <p>
+                    
+                </p>
+            </section>
+             <section class="bodytext">
+               
+                <p>Suspendisse interdum consectetur libero id faucibus nisl. Donec ac odio tempor orci dapibus ultrices in iaculis. Aenean euismod elementum nisi quis. Lorem sed risus ultricies tristique nulla. Consequat nisl vel pretium lectus quam. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Massa sed elementum tempus egestas sed sed risus pretium. Fusce id velit ut tortor pretium. Ac orci phasellus egestas tellus. Vitae nunc sed velit dignissim sodales. Imperdiet dui accumsan sit amet.</p>
+            </section>
+              <section>
+               
+                <p>
+                    
+                </p>
+            </section>
+             <div class="fullbody">
+                <div class="bodytext"style="padding-top:8vh">Suspendisse interdum consectetur libero id faucibus nisl. Donec ac odio tempor orci dapibus ultrices in iaculis. Aenean euismod elementum nisi quis. Lorem sed risus ultricies tristique nulla. Consequat nisl vel pretium lectus quam. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Massa sed elementum tempus egestas sed sed risus pretium. Fusce id velit ut tortor pretium. Ac orci phasellus egestas tellus. Vitae nunc sed velit dignissim sodales. Imperdiet dui accumsan sit amet.</div>
+                <br>
+<div class="sidebyside">
+    <img id="render"class="child" src="https://atlo.team/wp-content/uploads/2023/05/lombkoronarenderivertical.png">
+
+<iframe id="iframe" class="child"src='https://flo.uri.sh/visualisation/13830993/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no'sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe>
+</div>
+                <br>
+                <div class="bodytext">Suspendisse interdum consectetur libero id faucibus nisl. Donec ac odio tempor orci dapibus ultrices in iaculis. Aenean euismod elementum nisi quis. Lorem sed risus ultricies tristique nulla. Consequat nisl vel pretium lectus quam. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Massa sed elementum tempus egestas sed sed risus pretium. Fusce id velit ut tortor pretium. Ac orci phasellus egestas tellus. Vitae nunc sed velit dignissim sodales. Imperdiet dui accumsan sit amet.</div>
+
+
+                <br>
+                <blockquote class="embedly-card" data-card-key="cc75c9e49a45440489d5470c52606184" data-card-image="https://atlatszo.hu/wp-content/uploads/2023/05/indexkep_logonelkul_targyalas.png" data-card-type="article-full"><h4><a href="https://atlatszo.hu/orszagszerte/2023/05/13/elso-fokon-az-atlatszo-kiuteses-gyozelmevel-vegzodott-a-lombkoronas-sajtoper/">Első fokon az Átlátszó kiütéses győzelmével végződött a lombkoronás sajtóper | atlatszo.hu</a></h4><p>Január óta legalább 28 katonai szállítógép haladt át a magyar légtéren. Győrben ismét ukrán katonai helikopterek jártak, ezúttal próbálták titokban tartani az átszállításukat.</p></blockquote>
+<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script><br>
+<div class="bodytext">Suspendisse interdum consectetur libero id faucibus nisl. Donec ac odio tempor orci dapibus ultrices in iaculis. Aenean euismod elementum nisi quis. Lorem sed risus ultricies tristique nulla. Consequat nisl vel pretium lectus quam. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Massa sed elementum tempus egestas sed sed risus pretium. Fusce id velit ut tortor pretium. Ac orci phasellus egestas tellus. Vitae nunc sed velit dignissim sodales. Imperdiet dui accumsan sit amet.</div><br><br>
+                 <header>
+        <h1>A nyírmártonfalvai lombkoronasétány idővonala</h1>
+    </header>
+    
+    <section id="cd-timeline" class="cd-container">
+<div class="cd-timeline-block zero">
+            <div class="cd-timeline-img nulla cd-picture">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/1.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>Pályázati kiírás</h2>
+                <p>Megjelenik az uniós pályázati kiírás, a cél az erdei ökoszisztémák közjóléti funkcióinak fejlesztése.</p>
+                <span class="cd-date">2017. március 29.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block one">
+            <div class="cd-timeline-img egy cd-picture">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/2.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>Az első pályázat</h2>
+                <p>A térség vezető fideszes politikusa, Tasó László magánszemélyként lombkorona sétánnyal pályázik. Kép forrása: Facebook / Tasó László</p>
+                <span class="cd-date">2018. január 1.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block two">
+            <div class="cd-timeline-img ketto cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/3.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>A második pályázat</h2>
+                <p>Filemon Mihály agrárvállalkozó másnap nyújtja be a pályázatát, hogy a saját erdejébe ő is lombkorona sétányt építsen. Kép forrása: Google Earth, 2021</p>
+                <span class="cd-date">2018. január 2.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block three">
+            <div class="cd-timeline-img harom cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/4.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>Választás</h2>
+                <p>A fideszes Filemon Mihályt megválasztják Nyírmártonfalva polgármesterének. Kép forrása: Facebook / Filemon Mihály</p>
+                <span class="cd-date">2019. október</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block four">
+            <div class="cd-timeline-img negy cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/5.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>A harmadik pályázat</h2>
+                <p>Nyíradonyban két lombkorona sétány épülhet: Tasó mellett a megyei közgyűlés fideszes alelnöke, Tasi Sándor is elnyer 60 millió forintot. Kép forrása: Facebook / Tasó László</p>
+                <span class="cd-date">2021. január 29.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block five">
+            <div class="cd-timeline-img ot cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/6.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>Elnyert támogatás</h2>
+                <p>A szomszédos Nyírmártonfalván Filemon Mihály elnyeri a lombkorona sétányra a 64 millió forint támogatást. Kép forrása: Átlátszó</p>
+                <span class="cd-date">2021. május 20.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block six">
+            <div class="cd-timeline-img hat cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/7.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>Közös kivitelező</h2>
+                <p>Filemon Mihály és Tasó László ugyanazon a napon írja alá a szerződést ugyanazzal a kivitelezővel. Filemon szerint a pályázatoknak nincs semmi közük egymáshoz. Kép forrása: Átlátszó</p>
+                <span class="cd-date">2021. szeptember 27.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block seven">
+            <div class="cd-timeline-img het cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/8.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>Erdőirtás Nyírmártonfalván</h2>
+                <p>Tarra vágják a vágásérett erdőt Nyírmártonfalván, a polgármester szerint  „valamiből finanszírozni kellett" a lombkorona sétányt. Kép forrása: Átlátszó</p>
+                <span class="cd-date">2022. június 1.- 2022.augusztus 31.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block eight">
+            <div class="cd-timeline-img nyolc cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/9.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>Félkész munkálatok</h2>
+                <p>Lejár a nyírmártonfalvai kivitelezés határideje, a lombkorona sétány faszerkezete nincs lekezelve, a wc sincs kész. Kép forrása: Átlátszó</p>
+                <span class="cd-date">2022. december 9.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block nine">
+            <div class="cd-timeline-img kilenc cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/10.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>Botrány</h2>
+                <p>Kirobban a lomb nélküli lombkorona sétány miatt a botrány, melyet Hadházy Ákos és az Átlátszó tárt fel. Kép forrása: Átlátszó</p>
+                <span class="cd-date">2023. március 23.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block ten">
+            <div class="cd-timeline-img tiz cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/11_1.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>Első reakció</h2>
+                <p>Megszólal a polgármester: „A beruházásnak nem volt feltétele, hogy erdő is legyen a lombösvény körül.” Kép forrása: Youtube / ATV</p>
+                <span class="cd-date">2023. március 24.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block eleven">
+            <div class="cd-timeline-img tizenegy cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/12.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>OLAF</h2>
+                <p>Hadházy és Donáth az OLAF-hoz fordul a lombkorona sétányok ügyében. Kép forrása: Facebook / Donáth Anna</p>
+                <span class="cd-date">2023. március 31.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block twelve">
+            <div class="cd-timeline-img tizenketto cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/13_1.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>Utólagos kifizetés</h2>
+                <p>A Transparency International Magyarország az Integritás Hatósághoz fordul, ugyanis a támogatást majd csak utólag fizetik ki a polgármesternek. Kép forrása: transparency.hu</p>
+                <span class="cd-date">2023. április 6.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block thirteen">
+            <div class="cd-timeline-img tizenharom cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/14.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>&#128514 &#128514 &#128514</h2>
+                <p>„Le kéne venni a röhögős fejet” – egy szmájli miatt behívatja a közmunkást az irodájába a polgármester. Kép forrása: Youtube / Hadházy Ákos</p>
+                <span class="cd-date">2023. április 9.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block fourteen">
+            <div class="cd-timeline-img tizennegy cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/15.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>Tűzoltás</h2>
+                <p>A polgármester megpróbálja menteni a helyzetet, nem szeretné elbukni a támogatást, facsemetéket ültet a sétány köré. Kép forrása: Átlátszó</p>
+                <span class="cd-date">2023. április 12.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block fifteen">
+            <div class="cd-timeline-img tizenot cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/16.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>Magyarázhatatlan és védhetetlen</h2>
+                <p>Tasi szerint valóban „magyarázhatatlan és védhetetlen”, hogy a faépítmény egy tarra vágott terület közepén áll. Kép forrása: HBMO</p>
+                <span class="cd-date">2023. április 13.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block sixteen">
+            <div class="cd-timeline-img tizenhat cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/17.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>Perrel fenyeget</h2>
+                <p>A polgármester támadásba lendül: minden lapot perrel fenyeget, akik szerinte nevetségessé tették őt. Kép forrása: Facebook / Filemon Mihály</p>
+                <span class="cd-date">2023. április 19.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block seventeen">
+            <div class="cd-timeline-img tizenhet cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/18.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>Lazúr miatt lezár</h2>
+                <p>Megpróbálja eltusolni a botrányt a polgármester: lekenik a lombkorona sétány faszerkezetét, lezárják a sétányhoz vezető utat. Kép forrása: Youtube / Telex</p>
+                <span class="cd-date">2023. május 4.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block eighteen">
+            <div class="cd-timeline-img tizennyolc cd-movie">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/19.png">
+            </div> <!-- cd-timeline-img -->
+
+            <div class="cd-timeline-content">
+                <h2>Átlátszó 1:0 Filemon</h2>
+                <p>Filemon elbukja első fokon az Átlátszó ellen indított sajtópert. Kép forrása: Átlátszó</p>
+                <span class="cd-date">2023. május 12.</span>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+
+        
+            <div class="cd-timeline-img2 cd-logo">
+                <img src="https://atlo.team/wp-content/uploads/2023/05/atlatszofavicon3.png">
+            
+        </div> <!-- cd-timeline-block -->
+<div class="cd-timeline-block twentythree"></div>
+
+    </section> <!-- cd-timeline -->
+<div class="bodytext"><div>Suspendisse interdum consectetur libero id faucibus nisl. Donec ac odio tempor orci dapibus ultrices in iaculis. Aenean euismod elementum nisi quis. Lorem sed risus ultricies tristique nulla. Consequat nisl vel pretium lectus quam. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Massa sed elementum tempus egestas sed sed risus pretium. Fusce id velit ut tortor pretium. Ac orci phasellus egestas tellus. Vitae nunc sed velit dignissim sodales. Imperdiet dui accumsan sit amet.</div><div style="padding-top:5vh;padding-bottom:10vh"><div class="writers" style="text-align: center;">Módszertan</div><br>Suspendisse interdum consectetur libero id faucibus nisl. Donec ac odio tempor orci dapibus ultrices in iaculis. Aenean euismod elementum nisi quis. Lorem sed risus ultricies tristique nulla. Consequat nisl vel pretium lectus quam. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Massa sed elementum tempus egestas sed sed risus pretium. Fusce id velit ut tortor pretium. Ac orci phasellus egestas tellus. Vitae nunc sed velit dignissim sodales. Imperdiet dui accumsan sit amet.</div></div>
+             </div>
+        </main>
+       
+
+        <script type="module" src="bundle.js"></script>
+        
+
+    </body>
+</html>
